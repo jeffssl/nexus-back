@@ -1,0 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Nexus.Domain.Entities.System;
+
+namespace Nexus.Infrastructure.Persistence.Configurations.System;
+
+public class UserConfiguration : IEntityTypeConfiguration<Nexus.Domain.Entities.System.User>
+{
+    public void Configure(EntityTypeBuilder<Nexus.Domain.Entities.System.User> builder)
+    {
+        builder.ToTable("users", "system");
+
+        builder.HasKey(e => e.UserId);
+        builder.HasIndex(e => e.Email).IsUnique();
+    }
+}

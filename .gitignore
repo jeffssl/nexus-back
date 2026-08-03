@@ -1,0 +1,35 @@
+## Ignore Visual Studio / .NET build outputs
+[Bb]in/
+[Oo]bj/
+out/
+[Tt]est[Rr]esults/
+
+## Visual Studio / Rider / IDE user settings & metadata
+.vs/
+.idea/
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.DotSettings.user
+*.suo
+
+## ReSharper / Rider
+*_ReSharper*/
+[Dd]ot[Nn]et[Cc]overage*
+
+## NuGet & dependencies
+*.nupkg
+packages/
+project.lock.json
+project.assets.json
+
+## Local environment secrets & settings overrides
+appsettings*.local.json
+appsettings.*.Local.json
+*.env
+secrets.json
+
+## OS generated files
+.DS_Store
+Thumbs.db

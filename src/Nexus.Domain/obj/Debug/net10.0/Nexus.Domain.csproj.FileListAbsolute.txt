@@ -1,0 +1,11 @@
+/Users/jeff/Documents/Agendamiento-clinicas-laboratorios/Brain/Agendamiento-Clinicas-Laboratorios/01_Departamentos/Desarrollo/Backend/src/Nexus.Domain/bin/Debug/net10.0/Nexus.Domain.deps.json
+/Users/jeff/Documents/Agendamiento-clinicas-laboratorios/Brain/Agendamiento-Clinicas-Laboratorios/01_Departamentos/Desarrollo/Backend/src/Nexus.Domain/bin/Debug/net10.0/Nexus.Domain.dll
+/Users/jeff/Documents/Agendamiento-clinicas-laboratorios/Brain/Agendamiento-Clinicas-Laboratorios/01_Departamentos/Desarrollo/Backend/src/Nexus.Domain/bin/Debug/net10.0/Nexus.Domain.pdb
+/Users/jeff/Documents/Agendamiento-clinicas-laboratorios/Brain/Agendamiento-Clinicas-Laboratorios/01_Departamentos/Desarrollo/Backend/src/Nexus.Domain/obj/Debug/net10.0/Nexus.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jeff/Documents/Agendamiento-clinicas-laboratorios/Brain/Agendamiento-Clinicas-Laboratorios/01_Departamentos/Desarrollo/Backend/src/Nexus.Domain/obj/Debug/net10.0/Nexus.Domain.AssemblyInfoInputs.cache
+/Users/jeff/Documents/Agendamiento-clinicas-laboratorios/Brain/Agendamiento-Clinicas-Laboratorios/01_Departamentos/Desarrollo/Backend/src/Nexus.Domain/obj/Debug/net10.0/Nexus.Domain.AssemblyInfo.cs
+/Users/jeff/Documents/Agendamiento-clinicas-laboratorios/Brain/Agendamiento-Clinicas-Laboratorios/01_Departamentos/Desarrollo/Backend/src/Nexus.Domain/obj/Debug/net10.0/Nexus.Domain.csproj.CoreCompileInputs.cache
+/Users/jeff/Documents/Agendamiento-clinicas-laboratorios/Brain/Agendamiento-Clinicas-Laboratorios/01_Departamentos/Desarrollo/Backend/src/Nexus.Domain/obj/Debug/net10.0/Nexus.Domain.dll
+/Users/jeff/Documents/Agendamiento-clinicas-laboratorios/Brain/Agendamiento-Clinicas-Laboratorios/01_Departamentos/Desarrollo/Backend/src/Nexus.Domain/obj/Debug/net10.0/refint/Nexus.Domain.dll
+/Users/jeff/Documents/Agendamiento-clinicas-laboratorios/Brain/Agendamiento-Clinicas-Laboratorios/01_Departamentos/Desarrollo/Backend/src/Nexus.Domain/obj/Debug/net10.0/Nexus.Domain.pdb
+/Users/jeff/Documents/Agendamiento-clinicas-laboratorios/Brain/Agendamiento-Clinicas-Laboratorios/01_Departamentos/Desarrollo/Backend/src/Nexus.Domain/obj/Debug/net10.0/ref/Nexus.Domain.dll
