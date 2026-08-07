@@ -13,5 +13,8 @@ public class AuditLogConfiguration : IEntityTypeConfiguration<Nexus.Domain.Entit
         builder.HasKey(e => e.AuditLogId);
         builder.Property(e => e.OldValues).HasColumnType("jsonb");
         builder.Property(e => e.NewValues).HasColumnType("jsonb");
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.System.User>().WithMany().HasForeignKey(e => e.UserId);
     }
 }

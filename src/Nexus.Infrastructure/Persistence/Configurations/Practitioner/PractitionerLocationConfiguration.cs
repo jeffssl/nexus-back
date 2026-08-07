@@ -17,5 +17,10 @@ public class PractitionerLocationConfiguration : IEntityTypeConfiguration<Nexus.
         builder.HasKey(e => e.PractitionerLocationId);
 
         builder.HasIndex(e => e.TenantId);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Practitioner.Practitioner>().WithMany().HasForeignKey(e => e.PractitionerId);
+        builder.HasOne<Nexus.Domain.Entities.Organization.Organization>().WithMany().HasForeignKey(e => e.TenantId);
+        builder.HasOne<Nexus.Domain.Entities.Organization.Location>().WithMany().HasForeignKey(e => e.LocationId);
     }
 }

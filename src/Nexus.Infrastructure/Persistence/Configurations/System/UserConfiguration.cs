@@ -12,5 +12,10 @@ public class UserConfiguration : IEntityTypeConfiguration<Nexus.Domain.Entities.
 
         builder.HasKey(e => e.UserId);
         builder.HasIndex(e => e.Email).IsUnique();
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.System.User>().WithMany().HasForeignKey(e => e.CreatedBy);
+        builder.HasOne<Nexus.Domain.Entities.System.User>().WithMany().HasForeignKey(e => e.UpdatedBy);
+        builder.HasOne<Nexus.Domain.Entities.System.User>().WithMany().HasForeignKey(e => e.DeletedBy);
     }
 }

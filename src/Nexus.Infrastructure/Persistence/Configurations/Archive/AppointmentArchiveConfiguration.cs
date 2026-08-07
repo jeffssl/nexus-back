@@ -12,5 +12,8 @@ public class AppointmentArchiveConfiguration : IEntityTypeConfiguration<Nexus.Do
 
         builder.HasKey(e => e.AppointmentId);
         builder.Property(e => e.OriginalData).HasColumnType("jsonb");
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.System.User>().WithMany().HasForeignKey(e => e.ArchivedByUserId);
     }
 }

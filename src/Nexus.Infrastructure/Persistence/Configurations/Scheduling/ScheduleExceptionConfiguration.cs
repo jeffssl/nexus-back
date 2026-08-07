@@ -17,5 +17,11 @@ public class ScheduleExceptionConfiguration : IEntityTypeConfiguration<Nexus.Dom
         builder.HasKey(e => e.ExceptionId);
 
         builder.HasIndex(e => e.TenantId);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Scheduling.PractitionerSchedule>().WithMany().HasForeignKey(e => e.ScheduleId);
+        builder.HasOne<Nexus.Domain.Entities.Organization.Organization>().WithMany().HasForeignKey(e => e.TenantId);
+        builder.HasOne<Nexus.Domain.Entities.Practitioner.Practitioner>().WithMany().HasForeignKey(e => e.PractitionerId);
+        builder.HasOne<Nexus.Domain.Entities.Organization.LocationSpecialty>().WithMany().HasForeignKey(e => e.LocationSpecialtyId);
     }
 }

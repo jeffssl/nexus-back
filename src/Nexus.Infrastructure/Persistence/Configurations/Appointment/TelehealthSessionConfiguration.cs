@@ -18,5 +18,9 @@ public class TelehealthSessionConfiguration : IEntityTypeConfiguration<Nexus.Dom
         builder.HasIndex(e => e.AppointmentId).IsUnique();
 
         builder.HasIndex(e => e.TenantId);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Appointment.Appointment>().WithMany().HasForeignKey(e => e.AppointmentId);
+        builder.HasOne<Nexus.Domain.Entities.Organization.Organization>().WithMany().HasForeignKey(e => e.TenantId);
     }
 }

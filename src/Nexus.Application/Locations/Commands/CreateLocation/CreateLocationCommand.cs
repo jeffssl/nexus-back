@@ -59,6 +59,7 @@ public class CreateLocationCommandHandler : IRequestHandler<CreateLocationComman
             var address = new LocationAddress
             {
                 LocationId = entity.LocationId,
+                TenantId = request.TenantId,
                 CityId = request.CityId.Value,
                 AddressLine1 = request.AddressLine1 ?? "N/A",
                 Latitude = request.Latitude.Value,

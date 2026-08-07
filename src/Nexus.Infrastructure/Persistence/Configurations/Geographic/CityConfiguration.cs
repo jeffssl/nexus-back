@@ -11,5 +11,12 @@ public class CityConfiguration : IEntityTypeConfiguration<Nexus.Domain.Entities.
         builder.ToTable("cities", "geographic");
 
         builder.HasKey(e => e.CityId);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Geographic.State>().WithMany().HasForeignKey(e => e.StateId);
+
+        builder.HasData(
+            new Nexus.Domain.Entities.Geographic.City { CityId = 1, StateId = 1, Name = "Guayaquil", IsActive = true }
+        );
     }
 }

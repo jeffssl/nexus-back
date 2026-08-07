@@ -17,5 +17,11 @@ public class AppointmentClinicalDetailConfiguration : IEntityTypeConfiguration<N
         builder.HasKey(e => e.ClinicalDetailId);
 
         builder.HasIndex(e => e.TenantId);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Appointment.Appointment>().WithMany().HasForeignKey(e => e.AppointmentId);
+        builder.HasOne<Nexus.Domain.Entities.Organization.Organization>().WithMany().HasForeignKey(e => e.TenantId);
+        builder.HasOne<Nexus.Domain.Entities.System.User>().WithMany().HasForeignKey(e => e.CreatedBy);
+        builder.HasOne<Nexus.Domain.Entities.System.User>().WithMany().HasForeignKey(e => e.UpdatedBy);
     }
 }

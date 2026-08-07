@@ -17,5 +17,10 @@ public class LocationContactConfiguration : IEntityTypeConfiguration<Nexus.Domai
         builder.HasKey(e => e.ContactId);
 
         builder.HasIndex(e => e.TenantId);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Organization.Location>().WithMany().HasForeignKey(e => e.LocationId);
+        builder.HasOne<Nexus.Domain.Entities.Organization.Organization>().WithMany().HasForeignKey(e => e.TenantId);
+        builder.HasOne<Nexus.Domain.Entities.System.ContactType>().WithMany().HasForeignKey(e => e.ContactTypeId);
     }
 }

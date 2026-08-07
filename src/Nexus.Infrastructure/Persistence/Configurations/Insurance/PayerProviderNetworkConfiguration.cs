@@ -11,5 +11,9 @@ public class PayerProviderNetworkConfiguration : IEntityTypeConfiguration<Nexus.
         builder.ToTable("payer_provider_networks", "insurance");
 
         builder.HasKey(e => e.NetworkId);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Insurance.Payer>().WithMany().HasForeignKey(e => e.PayerId);
+        builder.HasOne<Nexus.Domain.Entities.Organization.Organization>().WithMany().HasForeignKey(e => e.OrganizationId);
     }
 }

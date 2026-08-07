@@ -17,5 +17,8 @@ public class PriceListConfiguration : IEntityTypeConfiguration<Nexus.Domain.Enti
         builder.HasKey(e => e.PriceListId);
 
         builder.HasIndex(e => e.TenantId);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Organization.Organization>().WithMany().HasForeignKey(e => e.TenantId);
     }
 }

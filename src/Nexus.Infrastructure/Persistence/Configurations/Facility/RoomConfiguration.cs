@@ -17,5 +17,9 @@ public class RoomConfiguration : IEntityTypeConfiguration<Nexus.Domain.Entities.
         builder.HasKey(e => e.RoomId);
 
         builder.HasIndex(e => e.TenantId);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Organization.Location>().WithMany().HasForeignKey(e => e.LocationId);
+        builder.HasOne<Nexus.Domain.Entities.Organization.Organization>().WithMany().HasForeignKey(e => e.TenantId);
     }
 }

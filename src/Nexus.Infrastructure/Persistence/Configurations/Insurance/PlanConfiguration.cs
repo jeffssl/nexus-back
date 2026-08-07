@@ -11,5 +11,8 @@ public class PlanConfiguration : IEntityTypeConfiguration<Nexus.Domain.Entities.
         builder.ToTable("plans", "insurance");
 
         builder.HasKey(e => e.PlanId);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Insurance.Payer>().WithMany().HasForeignKey(e => e.PayerId);
     }
 }

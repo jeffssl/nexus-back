@@ -25,5 +25,8 @@ public class DocumentTypeConfiguration : IEntityTypeConfiguration<Nexus.Domain.E
             new DocumentType { TypeId = 9, Code = "CPF", Name = "Cadastro de Pessoas Físicas", CountryId = 9, IsActive = true },
             new DocumentType { TypeId = 10, Code = "CNPJ", Name = "Cadastro Nacional da Pessoa Jurídica", CountryId = 9, IsActive = true }
         );
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Geographic.Country>().WithMany().HasForeignKey(e => e.CountryId);
     }
 }

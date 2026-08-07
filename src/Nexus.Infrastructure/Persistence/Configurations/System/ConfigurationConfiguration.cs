@@ -11,5 +11,9 @@ public class ConfigurationConfiguration : IEntityTypeConfiguration<Nexus.Domain.
         builder.ToTable("configurations", "system");
 
         builder.HasKey(e => e.ConfigKey);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.System.User>().WithMany().HasForeignKey(e => e.CreatedBy);
+        builder.HasOne<Nexus.Domain.Entities.System.User>().WithMany().HasForeignKey(e => e.UpdatedBy);
     }
 }

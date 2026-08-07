@@ -17,5 +17,14 @@ public class ServicePriceConfiguration : IEntityTypeConfiguration<Nexus.Domain.E
         builder.HasKey(e => e.ServicePriceId);
 
         builder.HasIndex(e => e.TenantId);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Pricing.PriceList>().WithMany().HasForeignKey(e => e.PriceListId);
+        builder.HasOne<Nexus.Domain.Entities.Organization.Organization>().WithMany().HasForeignKey(e => e.TenantId);
+        builder.HasOne<Nexus.Domain.Entities.Organization.Location>().WithMany().HasForeignKey(e => e.LocationId);
+        builder.HasOne<Nexus.Domain.Entities.Practitioner.Specialty>().WithMany().HasForeignKey(e => e.SpecialtyId);
+        builder.HasOne<Nexus.Domain.Entities.Pricing.Service>().WithMany().HasForeignKey(e => e.ServiceId);
+        builder.HasOne<Nexus.Domain.Entities.Practitioner.Practitioner>().WithMany().HasForeignKey(e => e.PractitionerId);
+        builder.HasOne<Nexus.Domain.Entities.Pricing.Currency>().WithMany().HasForeignKey(e => e.CurrencyCode);
     }
 }

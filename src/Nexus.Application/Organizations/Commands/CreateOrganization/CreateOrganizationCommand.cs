@@ -13,6 +13,7 @@ public record CreateOrganizationCommand(
     string? TaxId,
     int? DocumentTypeId,
     int CountryId,
+    int OrganizationTypeId,
     string? Website) : IRequest<Guid>;
 
 public class CreateOrganizationCommandValidator : AbstractValidator<CreateOrganizationCommand>
@@ -68,7 +69,9 @@ public class CreateOrganizationCommandHandler : IRequestHandler<CreateOrganizati
             TaxId = request.TaxId,
             DocumentTypeId = request.DocumentTypeId,
             TradeName = request.TradeName,
-            CountryId = request.CountryId
+            CountryId = request.CountryId,
+            OrganizationTypeId = request.OrganizationTypeId,
+            Website = request.Website
         };
 
         _context.Organizations.Add(entity);

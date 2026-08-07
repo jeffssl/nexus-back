@@ -17,5 +17,11 @@ public class PatientInsuranceConfiguration : IEntityTypeConfiguration<Nexus.Doma
         builder.HasKey(e => e.PatientInsuranceId);
 
         builder.HasIndex(e => e.TenantId);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Patient.Patient>().WithMany().HasForeignKey(e => e.PatientId);
+        builder.HasOne<Nexus.Domain.Entities.Organization.Organization>().WithMany().HasForeignKey(e => e.TenantId);
+        builder.HasOne<Nexus.Domain.Entities.Insurance.Payer>().WithMany().HasForeignKey(e => e.PayerId);
+        builder.HasOne<Nexus.Domain.Entities.Insurance.Plan>().WithMany().HasForeignKey(e => e.PlanId);
     }
 }

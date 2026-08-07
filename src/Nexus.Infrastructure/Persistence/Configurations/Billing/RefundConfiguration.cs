@@ -17,5 +17,12 @@ public class RefundConfiguration : IEntityTypeConfiguration<Nexus.Domain.Entitie
         builder.HasKey(e => e.RefundId);
 
         builder.HasIndex(e => e.TenantId);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Billing.Payment>().WithMany().HasForeignKey(e => e.PaymentId);
+        builder.HasOne<Nexus.Domain.Entities.Organization.Organization>().WithMany().HasForeignKey(e => e.TenantId);
+        builder.HasOne<Nexus.Domain.Entities.Pricing.Currency>().WithMany().HasForeignKey(e => e.CurrencyCode);
+        builder.HasOne<Nexus.Domain.Entities.Billing.RefundStatus>().WithMany().HasForeignKey(e => e.StatusCode);
+        builder.HasOne<Nexus.Domain.Entities.System.User>().WithMany().HasForeignKey(e => e.CreatedBy);
     }
 }

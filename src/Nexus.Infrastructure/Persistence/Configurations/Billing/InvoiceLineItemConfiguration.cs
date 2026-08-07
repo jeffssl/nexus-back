@@ -17,5 +17,10 @@ public class InvoiceLineItemConfiguration : IEntityTypeConfiguration<Nexus.Domai
         builder.HasKey(e => e.LineItemId);
 
         builder.HasIndex(e => e.TenantId);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Billing.Invoice>().WithMany().HasForeignKey(e => e.InvoiceId);
+        builder.HasOne<Nexus.Domain.Entities.Organization.Organization>().WithMany().HasForeignKey(e => e.TenantId);
+        builder.HasOne<Nexus.Domain.Entities.Pricing.Service>().WithMany().HasForeignKey(e => e.ServiceId);
     }
 }

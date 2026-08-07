@@ -11,5 +11,9 @@ public class LocationConfiguration : IEntityTypeConfiguration<Nexus.Domain.Entit
         builder.ToTable("locations", "organization");
 
         builder.HasKey(e => e.LocationId);
+    
+        // Relaciones Foreign Keys generadas desde DBML
+        builder.HasOne<Nexus.Domain.Entities.Organization.Organization>().WithMany().HasForeignKey(e => e.OrganizationId);
+        builder.HasOne<Nexus.Domain.Entities.Organization.Organization>().WithMany().HasForeignKey(e => e.TenantId);
     }
 }

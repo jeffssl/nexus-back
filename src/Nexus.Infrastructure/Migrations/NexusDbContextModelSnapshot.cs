@@ -163,9 +163,45 @@ namespace Nexus.Infrastructure.Migrations
                         .IsUnique()
                         .HasDatabaseName("ix_appointments_appointment_number");
 
+                    b.HasIndex("BookedByUserId")
+                        .HasDatabaseName("ix_appointments_booked_by_user_id");
+
+                    b.HasIndex("CancellationReasonId")
+                        .HasDatabaseName("ix_appointments_cancellation_reason_id");
+
+                    b.HasIndex("CreatedBy")
+                        .HasDatabaseName("ix_appointments_created_by");
+
+                    b.HasIndex("LocationId")
+                        .HasDatabaseName("ix_appointments_location_id");
+
+                    b.HasIndex("PatientId")
+                        .HasDatabaseName("ix_appointments_patient_id");
+
+                    b.HasIndex("PatientInsuranceId")
+                        .HasDatabaseName("ix_appointments_patient_insurance_id");
+
+                    b.HasIndex("PractitionerId")
+                        .HasDatabaseName("ix_appointments_practitioner_id");
+
+                    b.HasIndex("ServiceId")
+                        .HasDatabaseName("ix_appointments_service_id");
+
                     b.HasIndex("SlotId")
                         .IsUnique()
                         .HasDatabaseName("ix_appointments_slot_id");
+
+                    b.HasIndex("SpecialtyId")
+                        .HasDatabaseName("ix_appointments_specialty_id");
+
+                    b.HasIndex("StatusCode")
+                        .HasDatabaseName("ix_appointments_status_code");
+
+                    b.HasIndex("TenantId")
+                        .HasDatabaseName("ix_appointments_tenant_id");
+
+                    b.HasIndex("UpdatedBy")
+                        .HasDatabaseName("ix_appointments_updated_by");
 
                     b.ToTable("appointments", "appointment");
                 });
@@ -220,8 +256,17 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("ClinicalDetailId")
                         .HasName("pk_appointment_clinical_details");
 
+                    b.HasIndex("AppointmentId")
+                        .HasDatabaseName("ix_appointment_clinical_details_appointment_id");
+
+                    b.HasIndex("CreatedBy")
+                        .HasDatabaseName("ix_appointment_clinical_details_created_by");
+
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_appointment_clinical_details_tenant_id");
+
+                    b.HasIndex("UpdatedBy")
+                        .HasDatabaseName("ix_appointment_clinical_details_updated_by");
 
                     b.ToTable("appointment_clinical_details", "appointment");
                 });
@@ -519,6 +564,9 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("AppointmentId")
                         .HasName("pk_appointment_archives");
 
+                    b.HasIndex("ArchivedByUserId")
+                        .HasDatabaseName("ix_appointment_archives_archived_by_user_id");
+
                     b.ToTable("appointment_archives", "archive");
                 });
 
@@ -612,6 +660,24 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("InvoiceId")
                         .HasName("pk_invoices");
 
+                    b.HasIndex("AppointmentId")
+                        .HasDatabaseName("ix_invoices_appointment_id");
+
+                    b.HasIndex("CreatedBy")
+                        .HasDatabaseName("ix_invoices_created_by");
+
+                    b.HasIndex("CurrencyCode")
+                        .HasDatabaseName("ix_invoices_currency_code");
+
+                    b.HasIndex("PatientId")
+                        .HasDatabaseName("ix_invoices_patient_id");
+
+                    b.HasIndex("TenantId")
+                        .HasDatabaseName("ix_invoices_tenant_id");
+
+                    b.HasIndex("UpdatedBy")
+                        .HasDatabaseName("ix_invoices_updated_by");
+
                     b.ToTable("invoices", "billing");
                 });
 
@@ -663,6 +729,12 @@ namespace Nexus.Infrastructure.Migrations
 
                     b.HasKey("LineItemId")
                         .HasName("pk_invoice_line_items");
+
+                    b.HasIndex("InvoiceId")
+                        .HasDatabaseName("ix_invoice_line_items_invoice_id");
+
+                    b.HasIndex("ServiceId")
+                        .HasDatabaseName("ix_invoice_line_items_service_id");
 
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_invoice_line_items_tenant_id");
@@ -734,6 +806,27 @@ namespace Nexus.Infrastructure.Migrations
 
                     b.HasKey("PaymentId")
                         .HasName("pk_payments");
+
+                    b.HasIndex("CreatedBy")
+                        .HasDatabaseName("ix_payments_created_by");
+
+                    b.HasIndex("CurrencyCode")
+                        .HasDatabaseName("ix_payments_currency_code");
+
+                    b.HasIndex("InvoiceId")
+                        .HasDatabaseName("ix_payments_invoice_id");
+
+                    b.HasIndex("PatientInsuranceId")
+                        .HasDatabaseName("ix_payments_patient_insurance_id");
+
+                    b.HasIndex("PaymentMethodId")
+                        .HasDatabaseName("ix_payments_payment_method_id");
+
+                    b.HasIndex("StatusCode")
+                        .HasDatabaseName("ix_payments_status_code");
+
+                    b.HasIndex("TenantId")
+                        .HasDatabaseName("ix_payments_tenant_id");
 
                     b.ToTable("payments", "billing");
                 });
@@ -915,6 +1008,18 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("RefundId")
                         .HasName("pk_refunds");
 
+                    b.HasIndex("CreatedBy")
+                        .HasDatabaseName("ix_refunds_created_by");
+
+                    b.HasIndex("CurrencyCode")
+                        .HasDatabaseName("ix_refunds_currency_code");
+
+                    b.HasIndex("PaymentId")
+                        .HasDatabaseName("ix_refunds_payment_id");
+
+                    b.HasIndex("StatusCode")
+                        .HasDatabaseName("ix_refunds_status_code");
+
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_refunds_tenant_id");
 
@@ -1017,6 +1122,12 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("EquipmentId")
                         .HasName("pk_equipments");
 
+                    b.HasIndex("LocationId")
+                        .HasDatabaseName("ix_equipments_location_id");
+
+                    b.HasIndex("RoomId")
+                        .HasDatabaseName("ix_equipments_room_id");
+
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_equipments_tenant_id");
 
@@ -1085,6 +1196,9 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("RoomId")
                         .HasName("pk_rooms");
 
+                    b.HasIndex("LocationId")
+                        .HasDatabaseName("ix_rooms_location_id");
+
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_rooms_tenant_id");
 
@@ -1120,7 +1234,19 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("CityId")
                         .HasName("pk_cities");
 
+                    b.HasIndex("StateId")
+                        .HasDatabaseName("ix_cities_state_id");
+
                     b.ToTable("cities", "geographic");
+
+                    b.HasData(
+                        new
+                        {
+                            CityId = 1,
+                            IsActive = true,
+                            Name = "Guayaquil",
+                            StateId = 1
+                        });
                 });
 
             modelBuilder.Entity("Nexus.Domain.Entities.Geographic.Country", b =>
@@ -1292,6 +1418,9 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("TypeId")
                         .HasName("pk_document_types");
 
+                    b.HasIndex("CountryId")
+                        .HasDatabaseName("ix_document_types_country_id");
+
                     b.ToTable("document_types", "geographic");
 
                     b.HasData(
@@ -1406,7 +1535,20 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("StateId")
                         .HasName("pk_states");
 
+                    b.HasIndex("CountryId")
+                        .HasDatabaseName("ix_states_country_id");
+
                     b.ToTable("states", "geographic");
+
+                    b.HasData(
+                        new
+                        {
+                            StateId = 1,
+                            Code = "G",
+                            CountryId = 1,
+                            IsActive = true,
+                            Name = "Guayas"
+                        });
                 });
 
             modelBuilder.Entity("Nexus.Domain.Entities.Insurance.CoverageType", b =>
@@ -1506,6 +1648,12 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("PayerId")
                         .HasName("pk_payers");
 
+                    b.HasIndex("CountryId")
+                        .HasDatabaseName("ix_payers_country_id");
+
+                    b.HasIndex("CoverageTypeId")
+                        .HasDatabaseName("ix_payers_coverage_type_id");
+
                     b.ToTable("payers", "insurance");
                 });
 
@@ -1545,6 +1693,12 @@ namespace Nexus.Infrastructure.Migrations
 
                     b.HasKey("NetworkId")
                         .HasName("pk_payer_provider_networks");
+
+                    b.HasIndex("OrganizationId")
+                        .HasDatabaseName("ix_payer_provider_networks_organization_id");
+
+                    b.HasIndex("PayerId")
+                        .HasDatabaseName("ix_payer_provider_networks_payer_id");
 
                     b.ToTable("payer_provider_networks", "insurance");
                 });
@@ -1590,6 +1744,9 @@ namespace Nexus.Infrastructure.Migrations
 
                     b.HasKey("PlanId")
                         .HasName("pk_plans");
+
+                    b.HasIndex("PayerId")
+                        .HasDatabaseName("ix_plans_payer_id");
 
                     b.ToTable("plans", "insurance");
                 });
@@ -1660,6 +1817,12 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("LocationId")
                         .HasName("pk_locations");
 
+                    b.HasIndex("OrganizationId")
+                        .HasDatabaseName("ix_locations_organization_id");
+
+                    b.HasIndex("TenantId")
+                        .HasDatabaseName("ix_locations_tenant_id");
+
                     b.ToTable("locations", "organization");
                 });
 
@@ -1724,6 +1887,12 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("AddressId")
                         .HasName("pk_location_addresses");
 
+                    b.HasIndex("CityId")
+                        .HasDatabaseName("ix_location_addresses_city_id");
+
+                    b.HasIndex("LocationId")
+                        .HasDatabaseName("ix_location_addresses_location_id");
+
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_location_addresses_tenant_id");
 
@@ -1771,6 +1940,12 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("ContactId")
                         .HasName("pk_location_contacts");
 
+                    b.HasIndex("ContactTypeId")
+                        .HasDatabaseName("ix_location_contacts_contact_type_id");
+
+                    b.HasIndex("LocationId")
+                        .HasDatabaseName("ix_location_contacts_location_id");
+
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_location_contacts_tenant_id");
 
@@ -1808,6 +1983,12 @@ namespace Nexus.Infrastructure.Migrations
 
                     b.HasKey("LocationSpecialtyId")
                         .HasName("pk_location_specialties");
+
+                    b.HasIndex("LocationId")
+                        .HasDatabaseName("ix_location_specialties_location_id");
+
+                    b.HasIndex("SpecialtyId")
+                        .HasDatabaseName("ix_location_specialties_specialty_id");
 
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_location_specialties_tenant_id");
@@ -1885,6 +2066,15 @@ namespace Nexus.Infrastructure.Migrations
 
                     b.HasKey("OrganizationId")
                         .HasName("pk_organizations");
+
+                    b.HasIndex("CountryId")
+                        .HasDatabaseName("ix_organizations_country_id");
+
+                    b.HasIndex("DocumentTypeId")
+                        .HasDatabaseName("ix_organizations_document_type_id");
+
+                    b.HasIndex("OrganizationTypeId")
+                        .HasDatabaseName("ix_organizations_organization_type_id");
 
                     b.HasIndex("TaxId")
                         .IsUnique()
@@ -2040,6 +2230,21 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("PatientId")
                         .HasName("pk_patients");
 
+                    b.HasIndex("CreatedBy")
+                        .HasDatabaseName("ix_patients_created_by");
+
+                    b.HasIndex("DocumentTypeId")
+                        .HasDatabaseName("ix_patients_document_type_id");
+
+                    b.HasIndex("TenantId")
+                        .HasDatabaseName("ix_patients_tenant_id");
+
+                    b.HasIndex("UpdatedBy")
+                        .HasDatabaseName("ix_patients_updated_by");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_patients_user_id");
+
                     b.ToTable("patients", "patient");
                 });
 
@@ -2137,6 +2342,9 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("ConsentId")
                         .HasName("pk_patient_consents");
 
+                    b.HasIndex("PatientId")
+                        .HasDatabaseName("ix_patient_consents_patient_id");
+
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_patient_consents_tenant_id");
 
@@ -2183,6 +2391,12 @@ namespace Nexus.Infrastructure.Migrations
 
                     b.HasKey("PatientContactId")
                         .HasName("pk_patient_contacts");
+
+                    b.HasIndex("ContactTypeId")
+                        .HasDatabaseName("ix_patient_contacts_contact_type_id");
+
+                    b.HasIndex("PatientId")
+                        .HasDatabaseName("ix_patient_contacts_patient_id");
 
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_patient_contacts_tenant_id");
@@ -2267,6 +2481,15 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("PatientInsuranceId")
                         .HasName("pk_patient_insurances");
 
+                    b.HasIndex("PatientId")
+                        .HasDatabaseName("ix_patient_insurances_patient_id");
+
+                    b.HasIndex("PayerId")
+                        .HasDatabaseName("ix_patient_insurances_payer_id");
+
+                    b.HasIndex("PlanId")
+                        .HasDatabaseName("ix_patient_insurances_plan_id");
+
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_patient_insurances_tenant_id");
 
@@ -2315,6 +2538,12 @@ namespace Nexus.Infrastructure.Migrations
 
                     b.HasKey("RelationId")
                         .HasName("pk_patient_relations");
+
+                    b.HasIndex("DependentPatientId")
+                        .HasDatabaseName("ix_patient_relations_dependent_patient_id");
+
+                    b.HasIndex("PrimaryPatientId")
+                        .HasDatabaseName("ix_patient_relations_primary_patient_id");
 
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_patient_relations_tenant_id");
@@ -2391,6 +2620,21 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("PractitionerId")
                         .HasName("pk_practitioners");
 
+                    b.HasIndex("CreatedBy")
+                        .HasDatabaseName("ix_practitioners_created_by");
+
+                    b.HasIndex("DocumentTypeId")
+                        .HasDatabaseName("ix_practitioners_document_type_id");
+
+                    b.HasIndex("TenantId")
+                        .HasDatabaseName("ix_practitioners_tenant_id");
+
+                    b.HasIndex("UpdatedBy")
+                        .HasDatabaseName("ix_practitioners_updated_by");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_practitioners_user_id");
+
                     b.ToTable("practitioners", "practitioner");
                 });
 
@@ -2434,6 +2678,12 @@ namespace Nexus.Infrastructure.Migrations
 
                     b.HasKey("PractitionerContactId")
                         .HasName("pk_practitioner_contacts");
+
+                    b.HasIndex("ContactTypeId")
+                        .HasDatabaseName("ix_practitioner_contacts_contact_type_id");
+
+                    b.HasIndex("PractitionerId")
+                        .HasDatabaseName("ix_practitioner_contacts_practitioner_id");
 
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_practitioner_contacts_tenant_id");
@@ -2481,6 +2731,12 @@ namespace Nexus.Infrastructure.Migrations
 
                     b.HasKey("PractitionerLocationId")
                         .HasName("pk_practitioner_locations");
+
+                    b.HasIndex("LocationId")
+                        .HasDatabaseName("ix_practitioner_locations_location_id");
+
+                    b.HasIndex("PractitionerId")
+                        .HasDatabaseName("ix_practitioner_locations_practitioner_id");
 
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_practitioner_locations_tenant_id");
@@ -3791,6 +4047,24 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("ServicePriceId")
                         .HasName("pk_service_prices");
 
+                    b.HasIndex("CurrencyCode")
+                        .HasDatabaseName("ix_service_prices_currency_code");
+
+                    b.HasIndex("LocationId")
+                        .HasDatabaseName("ix_service_prices_location_id");
+
+                    b.HasIndex("PractitionerId")
+                        .HasDatabaseName("ix_service_prices_practitioner_id");
+
+                    b.HasIndex("PriceListId")
+                        .HasDatabaseName("ix_service_prices_price_list_id");
+
+                    b.HasIndex("ServiceId")
+                        .HasDatabaseName("ix_service_prices_service_id");
+
+                    b.HasIndex("SpecialtyId")
+                        .HasDatabaseName("ix_service_prices_specialty_id");
+
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_service_prices_tenant_id");
 
@@ -3884,6 +4158,21 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("ScheduleId")
                         .HasName("pk_practitioner_schedules");
 
+                    b.HasIndex("LocationSpecialtyId")
+                        .HasDatabaseName("ix_practitioner_schedules_location_specialty_id");
+
+                    b.HasIndex("PractitionerId")
+                        .HasDatabaseName("ix_practitioner_schedules_practitioner_id");
+
+                    b.HasIndex("RoomId")
+                        .HasDatabaseName("ix_practitioner_schedules_room_id");
+
+                    b.HasIndex("TenantId")
+                        .HasDatabaseName("ix_practitioner_schedules_tenant_id");
+
+                    b.HasIndex("WeekdayId")
+                        .HasDatabaseName("ix_practitioner_schedules_weekday_id");
+
                     b.ToTable("practitioner_schedules", "scheduling");
                 });
 
@@ -3943,6 +4232,15 @@ namespace Nexus.Infrastructure.Migrations
 
                     b.HasKey("ExceptionId")
                         .HasName("pk_schedule_exceptions");
+
+                    b.HasIndex("LocationSpecialtyId")
+                        .HasDatabaseName("ix_schedule_exceptions_location_specialty_id");
+
+                    b.HasIndex("PractitionerId")
+                        .HasDatabaseName("ix_schedule_exceptions_practitioner_id");
+
+                    b.HasIndex("ScheduleId")
+                        .HasDatabaseName("ix_schedule_exceptions_schedule_id");
 
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_schedule_exceptions_tenant_id");
@@ -4006,6 +4304,18 @@ namespace Nexus.Infrastructure.Migrations
 
                     b.HasKey("SlotId")
                         .HasName("pk_slots");
+
+                    b.HasIndex("LocationSpecialtyId")
+                        .HasDatabaseName("ix_slots_location_specialty_id");
+
+                    b.HasIndex("PractitionerId")
+                        .HasDatabaseName("ix_slots_practitioner_id");
+
+                    b.HasIndex("RoomId")
+                        .HasDatabaseName("ix_slots_room_id");
+
+                    b.HasIndex("TenantId")
+                        .HasDatabaseName("ix_slots_tenant_id");
 
                     b.ToTable("slots", "scheduling");
                 });
@@ -4076,6 +4386,15 @@ namespace Nexus.Infrastructure.Migrations
 
                     b.HasKey("WaitlistId")
                         .HasName("pk_waitlists");
+
+                    b.HasIndex("PatientId")
+                        .HasDatabaseName("ix_waitlists_patient_id");
+
+                    b.HasIndex("PractitionerId")
+                        .HasDatabaseName("ix_waitlists_practitioner_id");
+
+                    b.HasIndex("SpecialtyId")
+                        .HasDatabaseName("ix_waitlists_specialty_id");
 
                     b.HasIndex("TenantId")
                         .HasDatabaseName("ix_waitlists_tenant_id");
@@ -4201,6 +4520,9 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("AuditLogId")
                         .HasName("pk_audit_logs");
 
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_audit_logs_user_id");
+
                     b.ToTable("audit_logs", "system");
                 });
 
@@ -4250,6 +4572,12 @@ namespace Nexus.Infrastructure.Migrations
 
                     b.HasKey("ConfigKey")
                         .HasName("pk_configurations");
+
+                    b.HasIndex("CreatedBy")
+                        .HasDatabaseName("ix_configurations_created_by");
+
+                    b.HasIndex("UpdatedBy")
+                        .HasDatabaseName("ix_configurations_updated_by");
 
                     b.ToTable("configurations", "system");
                 });
@@ -4383,11 +4711,733 @@ namespace Nexus.Infrastructure.Migrations
                     b.HasKey("UserId")
                         .HasName("pk_users");
 
+                    b.HasIndex("CreatedBy")
+                        .HasDatabaseName("ix_users_created_by");
+
+                    b.HasIndex("DeletedBy")
+                        .HasDatabaseName("ix_users_deleted_by");
+
                     b.HasIndex("Email")
                         .IsUnique()
                         .HasDatabaseName("ix_users_email");
 
+                    b.HasIndex("UpdatedBy")
+                        .HasDatabaseName("ix_users_updated_by");
+
                     b.ToTable("users", "system");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Appointment.Appointment", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("BookedByUserId")
+                        .HasConstraintName("fk_appointments_users_booked_by_user_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Appointment.CancellationReason", null)
+                        .WithMany()
+                        .HasForeignKey("CancellationReasonId")
+                        .HasConstraintName("fk_appointments_cancellation_reasons_cancellation_reason_id");
+
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .HasConstraintName("fk_appointments_users_created_by");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Location", null)
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_appointments_locations_location_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Patient.Patient", null)
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_appointments_patients_patient_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Patient.PatientInsurance", null)
+                        .WithMany()
+                        .HasForeignKey("PatientInsuranceId")
+                        .HasConstraintName("fk_appointments_patient_insurances_patient_insurance_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Practitioner.Practitioner", null)
+                        .WithMany()
+                        .HasForeignKey("PractitionerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_appointments_practitioners_practitioner_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Pricing.Service", null)
+                        .WithMany()
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_appointments_services_service_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Scheduling.Slot", null)
+                        .WithMany()
+                        .HasForeignKey("SlotId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_appointments_slots_slot_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Practitioner.Specialty", null)
+                        .WithMany()
+                        .HasForeignKey("SpecialtyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_appointments_specialties_specialty_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Appointment.AppointmentStatus", null)
+                        .WithMany()
+                        .HasForeignKey("StatusCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_appointments_appointment_statuses_status_code");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_appointments_organizations_tenant_id");
+
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy")
+                        .HasConstraintName("fk_appointments_users_updated_by");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Appointment.AppointmentClinicalDetail", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Appointment.Appointment", null)
+                        .WithMany()
+                        .HasForeignKey("AppointmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_appointment_clinical_details_appointments_appointment_id");
+
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .HasConstraintName("fk_appointment_clinical_details_users_created_by");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_appointment_clinical_details_organizations_tenant_id");
+
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy")
+                        .HasConstraintName("fk_appointment_clinical_details_users_updated_by");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Appointment.TelehealthSession", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Appointment.Appointment", null)
+                        .WithMany()
+                        .HasForeignKey("AppointmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_telehealth_sessions_appointments_appointment_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_telehealth_sessions_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Archive.AppointmentArchive", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("ArchivedByUserId")
+                        .HasConstraintName("fk_appointment_archives_users_archived_by_user_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Billing.Invoice", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Appointment.Appointment", null)
+                        .WithMany()
+                        .HasForeignKey("AppointmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_invoices_appointments_appointment_id");
+
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .HasConstraintName("fk_invoices_users_created_by");
+
+                    b.HasOne("Nexus.Domain.Entities.Pricing.Currency", null)
+                        .WithMany()
+                        .HasForeignKey("CurrencyCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_invoices_currencies_currency_code");
+
+                    b.HasOne("Nexus.Domain.Entities.Patient.Patient", null)
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_invoices_patients_patient_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_invoices_organizations_tenant_id");
+
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy")
+                        .HasConstraintName("fk_invoices_users_updated_by");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Billing.InvoiceLineItem", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Billing.Invoice", null)
+                        .WithMany()
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_invoice_line_items_invoices_invoice_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Pricing.Service", null)
+                        .WithMany()
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_invoice_line_items_services_service_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_invoice_line_items_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Billing.Payment", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .HasConstraintName("fk_payments_users_created_by");
+
+                    b.HasOne("Nexus.Domain.Entities.Pricing.Currency", null)
+                        .WithMany()
+                        .HasForeignKey("CurrencyCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_payments_currencies_currency_code");
+
+                    b.HasOne("Nexus.Domain.Entities.Billing.Invoice", null)
+                        .WithMany()
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_payments_invoices_invoice_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Patient.PatientInsurance", null)
+                        .WithMany()
+                        .HasForeignKey("PatientInsuranceId")
+                        .HasConstraintName("fk_payments_patient_insurances_patient_insurance_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Billing.PaymentMethod", null)
+                        .WithMany()
+                        .HasForeignKey("PaymentMethodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_payments_payment_methods_payment_method_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Billing.PaymentStatus", null)
+                        .WithMany()
+                        .HasForeignKey("StatusCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_payments_payment_statuses_status_code");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_payments_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Billing.Refund", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .HasConstraintName("fk_refunds_users_created_by");
+
+                    b.HasOne("Nexus.Domain.Entities.Pricing.Currency", null)
+                        .WithMany()
+                        .HasForeignKey("CurrencyCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_refunds_currencies_currency_code");
+
+                    b.HasOne("Nexus.Domain.Entities.Billing.Payment", null)
+                        .WithMany()
+                        .HasForeignKey("PaymentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_refunds_payments_payment_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Billing.RefundStatus", null)
+                        .WithMany()
+                        .HasForeignKey("StatusCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_refunds_refund_statuses_status_code");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_refunds_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Facility.Equipment", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Organization.Location", null)
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_equipments_locations_location_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Facility.Room", null)
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .HasConstraintName("fk_equipments_rooms_room_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_equipments_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Facility.Room", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Organization.Location", null)
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_rooms_locations_location_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_rooms_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Geographic.City", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Geographic.State", null)
+                        .WithMany()
+                        .HasForeignKey("StateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_cities_states_state_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Geographic.DocumentType", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Geographic.Country", null)
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .HasConstraintName("fk_document_types_countries_country_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Geographic.State", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Geographic.Country", null)
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_states_countries_country_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Insurance.Payer", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Geographic.Country", null)
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_payers_countries_country_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Insurance.CoverageType", null)
+                        .WithMany()
+                        .HasForeignKey("CoverageTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_payers_coverage_types_coverage_type_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Insurance.PayerProviderNetwork", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_payer_provider_networks_organizations_organization_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Insurance.Payer", null)
+                        .WithMany()
+                        .HasForeignKey("PayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_payer_provider_networks_payers_payer_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Insurance.Plan", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Insurance.Payer", null)
+                        .WithMany()
+                        .HasForeignKey("PayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_plans_payers_payer_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Organization.Location", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_locations_organizations_organization_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_locations_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Organization.LocationAddress", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Geographic.City", null)
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_location_addresses_cities_city_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Location", null)
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_location_addresses_locations_location_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_location_addresses_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Organization.LocationContact", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.System.ContactType", null)
+                        .WithMany()
+                        .HasForeignKey("ContactTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_location_contacts_contact_types_contact_type_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Location", null)
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_location_contacts_locations_location_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_location_contacts_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Organization.LocationSpecialty", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Organization.Location", null)
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_location_specialties_locations_location_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Practitioner.Specialty", null)
+                        .WithMany()
+                        .HasForeignKey("SpecialtyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_location_specialties_specialties_specialty_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_location_specialties_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Organization.Organization", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Geographic.Country", null)
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_organizations_countries_country_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Geographic.DocumentType", null)
+                        .WithMany()
+                        .HasForeignKey("DocumentTypeId")
+                        .HasConstraintName("fk_organizations_document_types_document_type_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.OrganizationType", null)
+                        .WithMany()
+                        .HasForeignKey("OrganizationTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_organizations_organization_types_organization_type_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Patient.Patient", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .HasConstraintName("fk_patients_users_created_by");
+
+                    b.HasOne("Nexus.Domain.Entities.Geographic.DocumentType", null)
+                        .WithMany()
+                        .HasForeignKey("DocumentTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_patients_document_types_document_type_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_patients_organizations_tenant_id");
+
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy")
+                        .HasConstraintName("fk_patients_users_updated_by");
+
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("fk_patients_users_user_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Patient.PatientConsent", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Patient.Patient", null)
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_patient_consents_patients_patient_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_patient_consents_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Patient.PatientContact", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.System.ContactType", null)
+                        .WithMany()
+                        .HasForeignKey("ContactTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_patient_contacts_contact_types_contact_type_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Patient.Patient", null)
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_patient_contacts_patients_patient_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_patient_contacts_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Patient.PatientInsurance", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Patient.Patient", null)
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_patient_insurances_patients_patient_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Insurance.Payer", null)
+                        .WithMany()
+                        .HasForeignKey("PayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_patient_insurances_payers_payer_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Insurance.Plan", null)
+                        .WithMany()
+                        .HasForeignKey("PlanId")
+                        .HasConstraintName("fk_patient_insurances_plans_plan_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_patient_insurances_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Patient.PatientRelation", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Patient.Patient", null)
+                        .WithMany()
+                        .HasForeignKey("DependentPatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_patient_relations_patients_dependent_patient_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Patient.Patient", null)
+                        .WithMany()
+                        .HasForeignKey("PrimaryPatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_patient_relations_patients_primary_patient_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_patient_relations_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Practitioner.Practitioner", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .HasConstraintName("fk_practitioners_users_created_by");
+
+                    b.HasOne("Nexus.Domain.Entities.Geographic.DocumentType", null)
+                        .WithMany()
+                        .HasForeignKey("DocumentTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_practitioners_document_types_document_type_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_practitioners_organizations_tenant_id");
+
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy")
+                        .HasConstraintName("fk_practitioners_users_updated_by");
+
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("fk_practitioners_users_user_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Practitioner.PractitionerContact", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.System.ContactType", null)
+                        .WithMany()
+                        .HasForeignKey("ContactTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_practitioner_contacts_contact_types_contact_type_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Practitioner.Practitioner", null)
+                        .WithMany()
+                        .HasForeignKey("PractitionerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_practitioner_contacts_practitioners_practitioner_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_practitioner_contacts_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Practitioner.PractitionerLocation", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Organization.Location", null)
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_practitioner_locations_locations_location_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Practitioner.Practitioner", null)
+                        .WithMany()
+                        .HasForeignKey("PractitionerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_practitioner_locations_practitioners_practitioner_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_practitioner_locations_organizations_tenant_id");
                 });
 
             modelBuilder.Entity("Nexus.Domain.Entities.Practitioner.Specialty", b =>
@@ -4400,6 +5450,222 @@ namespace Nexus.Infrastructure.Migrations
                         .HasConstraintName("fk_specialties_specialty_categories_category_id");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Pricing.PriceList", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_price_lists_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Pricing.ServicePrice", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Pricing.Currency", null)
+                        .WithMany()
+                        .HasForeignKey("CurrencyCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_service_prices_currencies_currency_code");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Location", null)
+                        .WithMany()
+                        .HasForeignKey("LocationId")
+                        .HasConstraintName("fk_service_prices_locations_location_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Practitioner.Practitioner", null)
+                        .WithMany()
+                        .HasForeignKey("PractitionerId")
+                        .HasConstraintName("fk_service_prices_practitioners_practitioner_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Pricing.PriceList", null)
+                        .WithMany()
+                        .HasForeignKey("PriceListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_service_prices_price_lists_price_list_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Pricing.Service", null)
+                        .WithMany()
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_service_prices_services_service_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Practitioner.Specialty", null)
+                        .WithMany()
+                        .HasForeignKey("SpecialtyId")
+                        .HasConstraintName("fk_service_prices_specialties_specialty_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_service_prices_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Scheduling.PractitionerSchedule", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Organization.LocationSpecialty", null)
+                        .WithMany()
+                        .HasForeignKey("LocationSpecialtyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_practitioner_schedules_location_specialties_location_specia");
+
+                    b.HasOne("Nexus.Domain.Entities.Practitioner.Practitioner", null)
+                        .WithMany()
+                        .HasForeignKey("PractitionerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_practitioner_schedules_practitioners_practitioner_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Facility.Room", null)
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .HasConstraintName("fk_practitioner_schedules_rooms_room_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_practitioner_schedules_organizations_tenant_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Scheduling.Weekday", null)
+                        .WithMany()
+                        .HasForeignKey("WeekdayId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_practitioner_schedules_weekdays_weekday_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Scheduling.ScheduleException", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Organization.LocationSpecialty", null)
+                        .WithMany()
+                        .HasForeignKey("LocationSpecialtyId")
+                        .HasConstraintName("fk_schedule_exceptions_location_specialties_location_specialty");
+
+                    b.HasOne("Nexus.Domain.Entities.Practitioner.Practitioner", null)
+                        .WithMany()
+                        .HasForeignKey("PractitionerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_schedule_exceptions_practitioners_practitioner_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Scheduling.PractitionerSchedule", null)
+                        .WithMany()
+                        .HasForeignKey("ScheduleId")
+                        .HasConstraintName("fk_schedule_exceptions_practitioner_schedules_schedule_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_schedule_exceptions_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Scheduling.Slot", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Organization.LocationSpecialty", null)
+                        .WithMany()
+                        .HasForeignKey("LocationSpecialtyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_slots_location_specialties_location_specialty_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Practitioner.Practitioner", null)
+                        .WithMany()
+                        .HasForeignKey("PractitionerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_slots_practitioners_practitioner_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Facility.Room", null)
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .HasConstraintName("fk_slots_rooms_room_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_slots_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.Scheduling.Waitlist", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.Patient.Patient", null)
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_waitlists_patients_patient_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Practitioner.Practitioner", null)
+                        .WithMany()
+                        .HasForeignKey("PractitionerId")
+                        .HasConstraintName("fk_waitlists_practitioners_practitioner_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Practitioner.Specialty", null)
+                        .WithMany()
+                        .HasForeignKey("SpecialtyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_waitlists_specialties_specialty_id");
+
+                    b.HasOne("Nexus.Domain.Entities.Organization.Organization", null)
+                        .WithMany()
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_waitlists_organizations_tenant_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.System.AuditLog", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("fk_audit_logs_users_user_id");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.System.Configuration", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .HasConstraintName("fk_configurations_users_created_by");
+
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy")
+                        .HasConstraintName("fk_configurations_users_updated_by");
+                });
+
+            modelBuilder.Entity("Nexus.Domain.Entities.System.User", b =>
+                {
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .HasConstraintName("fk_users_users_created_by");
+
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("DeletedBy")
+                        .HasConstraintName("fk_users_users_deleted_by");
+
+                    b.HasOne("Nexus.Domain.Entities.System.User", null)
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy")
+                        .HasConstraintName("fk_users_users_updated_by");
                 });
 
             modelBuilder.Entity("Nexus.Domain.Entities.Practitioner.SpecialtyCategory", b =>
